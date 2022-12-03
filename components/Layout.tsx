@@ -19,7 +19,7 @@ export default function Layout({ children }: LayoutProps) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Navbar />
-      <main>{children}</main>
+      <main className='mt-20'>{children}</main>
       <Footer />
     </>
   );
