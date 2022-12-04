@@ -13,12 +13,12 @@ const links = [
   },
   {
     label: 'GitHub',
-    link: 'https://twitter.com/JairojairtoroN',
+    link: 'https://github.com/jtnovellis',
     icon: <IconBrandGithub />,
   },
   {
     label: 'Twitter',
-    link: 'https://github.com/jtnovellis',
+    link: 'https://twitter.com/JairojairtoroN',
     icon: <IconBrandTwitter />,
   },
 ];

@@ -1,8 +1,9 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 
 type FormState = {
   query: string;
   name: string;
+  error: boolean;
 };
 
 type FormAction =
@@ -15,6 +16,10 @@ type FormAction =
     }
   | {
       type: 'clear';
+    }
+  | {
+      type: 'error';
+      payload: boolean;
     };
 
 function searcherReducer(state: FormState, action: FormAction) {
@@ -27,12 +32,18 @@ function searcherReducer(state: FormState, action: FormAction) {
       };
     case 'clear':
       return initialState;
+    case 'error':
+      return {
+        ...state,
+        error: action.payload,
+      };
   }
 }
 
 const initialState = {
   query: 'empty',
   name: '',
+  error: false,
 };
 
 export default function useFormReducer() {
