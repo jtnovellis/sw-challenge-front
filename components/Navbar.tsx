@@ -34,7 +34,7 @@ export default function Navbar() {
   });
 
   return (
-    <header className='p-4 sm:p-6 w-full'>
+    <header className='p-4 fixed top-0 sm:p-6 w-full bg-black z-20'>
       <nav className='border border-white rounded-lg p-3 sm:p-5 flex justify-between items-center shadow-2xl lg:max-w-6xl md:mx-auto'>
         <p className='font-extrabold text-3xl'>StarWars</p>
         <div className='md:hidden pt-1'>
