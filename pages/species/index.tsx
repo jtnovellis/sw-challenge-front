@@ -21,7 +21,7 @@ export default function SpeciesPage({ species }: SpeciesPageProps) {
     setSpeciesState(newSpecies);
   }, [newSpecies]);
 
-  const planetsmapped = SpeciesState.map((item) => {
+  const speciesmapped = SpeciesState.map((item) => {
     const id = item.url.substring(30).replace('/', '');
     return <NameCard id={id} name={item.name} key={item.url} slug='species' />;
   });
@@ -32,7 +32,7 @@ export default function SpeciesPage({ species }: SpeciesPageProps) {
   return (
     <section className='p-4'>
       <h1 className='text-3xl text-center font-bold my-3'>Species</h1>
-      <div className='flex flex-wrap justify-center'>{planetsmapped}</div>
+      <div className='flex flex-wrap justify-center'>{speciesmapped}</div>
       <Pagination
         next={next}
         previous={previous}
