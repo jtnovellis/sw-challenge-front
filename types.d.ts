@@ -109,10 +109,17 @@ export interface Films {
   url: string;
 }
 
+export type Filters = {
+  url: string;
+  name?: string;
+  title?: string;
+};
+
 export type Slugs =
   | 'people'
   | 'starships'
   | 'vehicles'
   | 'species'
   | 'planets'
-  | 'films';
+  | 'films'
+  | 'empty';

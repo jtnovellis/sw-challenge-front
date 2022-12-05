@@ -4,8 +4,8 @@ import { Slugs } from '../types';
 
 interface NameCardProps {
   id: string;
-  name: string;
-  slug: Slugs;
+  name: string | undefined;
+  slug: Slugs | string;
 }
 
 export default function NameCard({ id, name, slug }: NameCardProps) {

@@ -1,9 +1,13 @@
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import { IconSearch } from '@tabler/icons';
 import useFormReducer from '../hooks/useFormReducer';
 import Card from '../components/Card';
 import Link from 'next/link';
+import { Filters } from '../types';
+import Spinner from '../components/Spinner';
+import MsgError from '../components/MsgError';
+import NameCard from '../components/NameCard';
 
 export const pages = [
   {
@@ -40,6 +44,9 @@ export const pages = [
 
 export default function Home() {
   const [searcher, dispatch] = useFormReducer();
+  const [filter, setFilter] = useState<Filters[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   function handleChange(
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
@@ -57,15 +64,29 @@ export default function Home() {
     });
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (searcher.query === 'empty') {
       dispatch({ type: 'error', payload: true });
     } else {
-      alert(JSON.stringify(searcher, null, 2));
-      dispatch({ type: 'clear' });
+      try {
+        setLoading(true);
+        const URI = process.env.NEXT_PUBLIC_SWAPI_URI as string;
+        const res = await fetch(
+          `${URI}/${searcher.query}?search=${searcher.name}`
+        );
+        const data = await res.json();
+        setFilter(data.results);
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     }
   }
+
+  if (error) return <MsgError />;
+  if (loading) return <Spinner />;
 
   return (
     <section className='p-4'>
@@ -112,17 +133,39 @@ export default function Home() {
         )}
       </form>
       <div className='flex flex-wrap justify-center mt-6 lg:mt-11'>
-        {pages.map((item) => {
-          return (
-            <Link
-              href={item.link}
-              key={item.label}
-              className='transform hover:translate-y-2 transition-all'
-            >
-              <Card title={item.label} image={item.image} />
-            </Link>
-          );
-        })}
+        {filter.length > 0
+          ? filter.map((item) => {
+              let id = '';
+              let slug = searcher.query;
+              let name = searcher.query === 'films' ? item.title : item.name;
+              if (searcher.query === 'people') {
+                id = item.url.substring(29).replace('/', '');
+              } else if (searcher.query === 'planets') {
+                id = item.url.substring(30).replace('/', '');
+              } else if (searcher.query === 'films') {
+                id = item.url.substring(28).replace('/', '');
+              } else if (searcher.query === 'species') {
+                id = item.url.substring(30).replace('/', '');
+              } else if (searcher.query === 'starships') {
+                id = item.url.substring(32).replace('/', '');
+              } else if (searcher.query === 'vehicles') {
+                id = item.url.substring(31).replace('/', '');
+              }
+              return (
+                <NameCard id={id} name={name} key={item.url} slug={slug} />
+              );
+            })
+          : pages.map((item) => {
+              return (
+                <Link
+                  href={item.link}
+                  key={item.label}
+                  className='transform hover:translate-y-2 transition-all'
+                >
+                  <Card title={item.label} image={item.image} />
+                </Link>
+              );
+            })}
       </div>
     </section>
   );
