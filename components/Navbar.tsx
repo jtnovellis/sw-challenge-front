@@ -20,7 +20,7 @@ const pages = [
     link: '/starships',
   },
   {
-    label: 'Plantets',
+    label: 'Planets',
     link: '/planets',
   },
   {
@@ -29,7 +29,7 @@ const pages = [
   },
   {
     label: 'Species',
-    link: '/speies',
+    link: '/species',
   },
 ];
 
