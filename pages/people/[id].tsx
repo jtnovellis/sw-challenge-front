@@ -12,9 +12,10 @@ export default function Character({ character }: CharacterProps) {
   return (
     <section className='p-4 lg:mt-40 sm:mt-36'>
       <DetailCard
+        headSub='Birth year'
         title={character.name}
         subtitle={character.birth_year}
-        route='/people'
+        route='people'
       >
         <ul className='border-b p-2'>
           <li>
@@ -54,24 +55,28 @@ export default function Character({ character }: CharacterProps) {
             subsNum={28}
             name='Film'
             title='Films'
+            slug='films'
           />
           <ListDetail
             list={character.species}
             subsNum={30}
             name='Specie'
             title='Species'
+            slug='species'
           />
           <ListDetail
             list={character.vehicles}
             subsNum={31}
             name='Vehicle'
             title='Vehicles'
+            slug='vehicles'
           />
           <ListDetail
             list={character.starships}
             subsNum={32}
             name='Starship'
             title='Starships'
+            slug='starships'
           />
         </div>
       </DetailCard>

@@ -1,12 +1,14 @@
 import { IconChevronLeft } from '@tabler/icons';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { Slugs } from '../types';
 
 interface DetailCardProps {
   title: string;
-  subtitle: string;
+  subtitle: string | number;
   children: React.ReactNode;
-  route: string;
+  route: Slugs;
+  headSub: string;
 }
 
 export default function DetailCard({
@@ -14,6 +16,7 @@ export default function DetailCard({
   subtitle,
   children,
   route,
+  headSub,
 }: DetailCardProps) {
   const router = useRouter();
   return (
@@ -21,10 +24,12 @@ export default function DetailCard({
       <div className='border-b px-3 py-3 flex justify-between items-center'>
         <div>
           <h1 className='font-bold text-lg'>{title}</h1>
-          <p className='text-sm'>{subtitle}</p>
+          <p className='text-sm'>
+            <strong>{headSub}:</strong> {subtitle}
+          </p>
         </div>
         <button
-          onClick={() => router.push(route)}
+          onClick={() => router.push(`/${route}`)}
           className='flex border border-white rounded-lg p-2'
         >
           <IconChevronLeft /> Go Back
