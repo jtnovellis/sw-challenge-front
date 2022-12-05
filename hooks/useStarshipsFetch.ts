@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-export default function usePlanetsFetching(page: number) {
-  const [newPlanets, setNewPlanets] = useState([]);
+export default function useStarshipsFetch(page: number) {
+  const [newStarships, setNewStarships] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [next, setNext] = useState<string | null>(null);
@@ -12,9 +12,9 @@ export default function usePlanetsFetching(page: number) {
       const URI = process.env.NEXT_PUBLIC_SWAPI_URI as string;
       try {
         setIsLoading(true);
-        const res = await fetch(`${URI}/planets?page=${page}`);
+        const res = await fetch(`${URI}/starships?page=${page}`);
         const data = await res.json();
-        setNewPlanets(data.results);
+        setNewStarships(data.results);
         setNext(data.next);
         setPrevious(data.previous);
       } catch {
@@ -25,5 +25,5 @@ export default function usePlanetsFetching(page: number) {
     })();
   }, [page]);
 
-  return { newPlanets, isError, isLoading, next, previous };
+  return { newStarships, isError, isLoading, next, previous };
 }
