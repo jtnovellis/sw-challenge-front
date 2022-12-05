@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import React from 'react';
 import { IconSearch } from '@tabler/icons';
 import useFormReducer from '../hooks/useFormReducer';
