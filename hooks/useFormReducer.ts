@@ -1,5 +1,4 @@
 import { useReducer } from 'react';
-import { Slugs } from '../types';
 
 type FormState = {
   query: string;
