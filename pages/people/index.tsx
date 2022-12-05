@@ -22,9 +22,9 @@ export default function PeoplePage({ people }: PeoplePageProps) {
     setCharacters(newPeople);
   }, [newPeople]);
 
-  const actors = characters.map((item, i) => {
+  const actors = characters.map((item) => {
     const id = item.url.substring(29).replace('/', '');
-    return <NameCard id={id} name={item.name} key={item.url} />;
+    return <NameCard id={id} name={item.name} key={item.url} slug='people' />;
   });
 
   if (isError) return <MsgError />;

@@ -108,3 +108,11 @@ export interface Films {
   edited: string;
   url: string;
 }
+
+export type Slugs =
+  | 'people'
+  | 'starships'
+  | 'vehicles'
+  | 'species'
+  | 'planets'
+  | 'films';
