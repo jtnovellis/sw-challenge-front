@@ -42,7 +42,7 @@ export default function Character({ character }: CharacterProps) {
         </ul>
         <div className='border-b p-2 text-center'>
           <Link
-            href={`/homeworld/${character.homeworld
+            href={`/planets/${character.homeworld
               .substring(30)
               .replace('/', '')}`}
           >
