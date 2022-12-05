@@ -24,7 +24,7 @@ export default function SpecieCharPage({ specie }: SpecieCharPageProps) {
             <strong>Average height:</strong> {specie.average_height}
           </li>
           <li>
-            <strong>Skin Colors:</strong> {specie.skin_colors} km
+            <strong>Skin Colors:</strong> {specie.skin_colors}
           </li>
           <li>
             <strong>Hair Colors:</strong> {specie.hair_colors}

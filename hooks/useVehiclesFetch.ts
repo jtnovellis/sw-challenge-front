@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-export default function useSpeciesFetch(page: number) {
-  const [newSpecies, setNewSpecies] = useState([]);
+export default function useVehiclesFetch(page: number) {
+  const [newVehicles, setNewVehicles] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [next, setNext] = useState<string | null>(null);
@@ -12,9 +12,9 @@ export default function useSpeciesFetch(page: number) {
       const URI = process.env.NEXT_PUBLIC_SWAPI_URI as string;
       try {
         setIsLoading(true);
-        const res = await fetch(`${URI}/species?page=${page}`);
+        const res = await fetch(`${URI}/vehicles?page=${page}`);
         const data = await res.json();
-        setNewSpecies(data.results);
+        setNewVehicles(data.results);
         setNext(data.next);
         setPrevious(data.previous);
       } catch {
@@ -25,5 +25,5 @@ export default function useSpeciesFetch(page: number) {
     })();
   }, [page]);
 
-  return { newSpecies, isError, isLoading, next, previous };
+  return { newVehicles, isError, isLoading, next, previous };
 }
