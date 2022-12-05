@@ -24,12 +24,17 @@ export const pages = [
   {
     label: 'Vehicles',
     link: '/vehicles',
-    image: '/scale.jpeg',
+    image: '/vehicles.jpeg',
   },
   {
     label: 'Planets',
     link: '/planets',
     image: '/planets.jpg',
+  },
+  {
+    label: 'Species',
+    link: '/species',
+    image: '/species.jpeg',
   },
 ];
 
