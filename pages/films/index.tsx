@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { Films } from '../../types';
 import NameCard from '../../components/NameCard';
+
 interface FilmsPage {
   films: Films[];
 }

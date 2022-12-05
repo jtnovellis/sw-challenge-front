@@ -1,66 +1,61 @@
 import { GetServerSideProps } from 'next';
-import { Starships } from '../../types';
+import { Vehicles } from '../../types';
 import DetailCard from '../../components/DetailCard';
 import ListDetail from '../../components/ListDetail';
 
-interface StarshipCharacterPageProps {
-  starship: Starships;
+interface VehiclePageProps {
+  vehicle: Vehicles;
 }
 
-export default function StarshipCharacterPage({
-  starship,
-}: StarshipCharacterPageProps) {
+export default function VehiclePage({ vehicle }: VehiclePageProps) {
   return (
     <section className='p-4 lg:mt-40 sm:mt-36'>
       <DetailCard
         headSub='Model'
-        title={starship.name}
-        subtitle={starship.model}
-        route='starships'
+        title={vehicle.name}
+        subtitle={vehicle.model}
+        route='vehicles'
       >
         <ul className='border-b p-2'>
           <li>
-            <strong>Manufacturer:</strong> {starship.manufacturer}
+            <strong>Manufacturer:</strong> {vehicle.manufacturer}
           </li>
           <li>
-            <strong>Cost in credits:</strong> {starship.cost_in_credits}
+            <strong>Cost in credits:</strong> {vehicle.cost_in_credits}
           </li>
           <li>
-            <strong>Length:</strong> {starship.length}
+            <strong>Length:</strong> {vehicle.length}
           </li>
           <li>
             <strong>Max atmosphering speed:</strong>{' '}
-            {starship.max_atmosphering_speed}
+            {vehicle.max_atmosphering_speed}
           </li>
           <li>
-            <strong>Crew:</strong> {starship.crew}
+            <strong>Crew:</strong> {vehicle.crew}
           </li>
           <li>
-            <strong>Passengers:</strong> {starship.passengers}
+            <strong>Passengers:</strong> {vehicle.passengers}
           </li>
           <li>
-            <strong>Consumables:</strong> {starship.consumables}
+            <strong>Consumables:</strong> {vehicle.consumables}
           </li>
           <li>
-            <strong>Hyperdrive rating:</strong> {starship.hyperdrive_rating}
+            <strong>Cargo capacity:</strong> {vehicle.cargo_capacity}
           </li>
           <li>
-            <strong>MGLT:</strong> {starship.MGLT}
-          </li>
-          <li>
-            <strong>Class:</strong> {starship.starship_class}
+            <strong>Class:</strong> {vehicle.vehicle_class}
           </li>
         </ul>
         <div className='flex flex-wrap justify-around'>
           <ListDetail
-            list={starship.films}
+            list={vehicle.films}
             subsNum={28}
             name='Film'
             title='Films'
             slug='films'
           />
           <ListDetail
-            list={starship.pilots}
+            list={vehicle.pilots}
             subsNum={29}
             name='Character'
             title='Pilots'
@@ -77,12 +72,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const URI = process.env.SWAPI_URI as string;
   let data;
   if (params) {
-    const res = await fetch(`${URI}/starships/${params.id}`);
+    const res = await fetch(`${URI}/vehicles/${params.id}`);
     data = await res.json();
   }
   return {
     props: {
-      starship: data,
+      vehicle: data,
     },
   };
 };
