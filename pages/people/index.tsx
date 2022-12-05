@@ -13,7 +13,6 @@ interface PeoplePageProps {
 
 export default function PeoplePage({ people }: PeoplePageProps) {
   const [page, setPage] = useState(1);
-
   const { isError, isLoading, newPeople, next, previous } =
     usePeopleFetching(page);
   const [characters, setCharacters] = useState(people);
