@@ -51,8 +51,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       people: data.results,
-      next: data.next,
-      previous: data.previous,
     },
   };
 };
